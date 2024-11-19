@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"*.sqlite": "sqlite",
+		"pipex.h": "c"
+	}
+}
