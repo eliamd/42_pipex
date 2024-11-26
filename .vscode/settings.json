@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"*.sqlite": "sqlite",
-		"pipex.h": "c",
-		"stdio.h": "c",
-		"types.h": "c",
-		"sstream": "c"
-	}
-}
