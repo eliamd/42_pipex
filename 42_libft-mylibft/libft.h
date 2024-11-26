@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:13:45 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/18 13:57:09 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/26 11:30:29 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ int				ft_printf(const char *str, ...);
 //GET NEXT LINE
 typedef struct s_list_gnl
 {
-	char			*content;
+	char				*content;
 	struct s_list_gnl	*next;
 }					t_list_gnl;
 
-t_list_gnl			*ft_lstlast_gnl(t_list_gnl *lst);
+t_list_gnl		*ft_lstlast_gnl(t_list_gnl *lst);
 int				found_newline(t_list_gnl *list);
 void			polish_list(t_list_gnl **list);
 void			ft_lstadd_backbuffer(t_list_gnl **lst, char *buffer);

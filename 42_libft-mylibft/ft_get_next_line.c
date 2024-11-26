@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:04:50 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/08 17:06:08 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/26 11:29:44 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ int	found_newline(t_list_gnl *list)
 
 void	clean_list(t_list_gnl **list)
 {
-	t_list_gnl	*last_node;
-	t_list_gnl	*clean_node;
-	int		i;
-	int		k;
-	char	*buf;
+	t_list_gnl		*last_node;
+	t_list_gnl		*clean_node;
+	int				i;
+	int				k;
+	char			*buf;
 
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
@@ -111,7 +111,7 @@ void	clean_list(t_list_gnl **list)
 char	*get_next_line(int fd)
 {
 	static t_list_gnl	*list[1024];
-	char			*next_line;
+	char				*next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
