@@ -6,21 +6,11 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:54:18 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/26 16:04:34 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/26 16:24:21 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-char	*ft_get_cmd_path(char *str)
-{
-	char	*path;
-
-	path = ft_strjoin("/usr/bin/", str);
-	if (!path)
-		return (NULL);
-	return (path);
-}
 
 static void	ft_chlid_process(t_args_execute args, int index, int mode)
 {
@@ -36,24 +26,11 @@ static void	ft_chlid_process(t_args_execute args, int index, int mode)
 		ft_freetab(arg_tab);
 		exit(EXIT_FAILURE);
 	}
-	if (mode == 1)
-	{
-		dup2(args.fdin, STDIN_FILENO);
-		dup2(args.fd[1], STDOUT_FILENO);
-	}
-	else
-	{
-		dup2(args.fd[0], STDIN_FILENO);
-		dup2(args.fdout, STDOUT_FILENO);
-	}
-	close(args.fd[0]);
-	close(args.fd[1]);
+	ft_redirect_fd(args, mode);
 	execv(cmd_path, arg_tab);
 	perror("Erreur : execv");
-	ft_freetab(arg_tab);
-	free(arg_tab);
-	free(cmd_path);
-	exit(EXIT_FAILURE);
+	return (ft_freetab(arg_tab), free(arg_tab), free(cmd_path), \
+	exit(EXIT_FAILURE));
 }
 
 int	ft_execute(t_args_execute args, int index, int mode)
@@ -82,17 +59,6 @@ int	ft_setup_files(char **argv, int *fd_in, int *fd_out)
 		return (perror("Erreur fd_in dans ft_setup_files"), 0);
 	}
 	return (1);
-}
-
-t_args_execute	ft_create_args(char **argv, int *fd, int fd_in, int fd_out)
-{
-	t_args_execute	args;
-
-	args.argv = argv;
-	args.fd = fd;
-	args.fdin = fd_in;
-	args.fdout = fd_out;
-	return (args);
 }
 
 void	ft_pipex(char **argv, int *fd, int fd_in, int fd_out)
