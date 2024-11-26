@@ -6,7 +6,7 @@
 #    By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 14:02:05 by edetoh            #+#    #+#              #
-#    Updated: 2024/11/04 17:41:51 by edetoh           ###   ########.fr        #
+#    Updated: 2024/11/26 16:55:00 by edetoh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@
 # =============================== VARIABLES =================================== #
 
 # Nom de la librairie finale
-NAME		= pipex.a
+
+##TODO : Corriger le makefile, ne pas compiler une lib mais un executable
+NAME		= pipex
 
 # Répertoires
 INCLUDE		= include
@@ -43,7 +45,8 @@ WHITE = \033[0;97m
 # =============================== SOURCES ===================================== #
 
 # Liste des fichiers source pour ft_printf
-SRC_FILES	=
+SRC_FILES	= pipex \
+			  pipex_utils \
 
 # Définition des fichiers source et objets
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
