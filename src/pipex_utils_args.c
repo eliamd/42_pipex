@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:30:53 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/28 14:32:01 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/28 16:00:15 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ char	*concat_path(const char *dir, const char *cmd)
 	return (full_path);
 }
 
+char	*ft_getenv(const char *name)
+{
+	extern char	**environ;
+	int			i;
+	int			len;
+
+	i = 0;
+	len = ft_strlen(name);
+	while (environ[i])
+	{
+		if (ft_strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
+			return (environ[i] + len + 1);
+		i++;
+	}
+	return (NULL);
+}
+
 int	ft_command_found_and_access(char **arg_tab)
 {
 	char	*cmd_dir;
@@ -32,7 +49,7 @@ int	ft_command_found_and_access(char **arg_tab)
 	int		i;
 
 	i = 0;
-	pathcmd = ft_split(getenv("PATH"), ':');
+	pathcmd = ft_split(ft_getenv("PATH"), ':');
 	if (!pathcmd)
 		return (0);
 	while (pathcmd[i])
