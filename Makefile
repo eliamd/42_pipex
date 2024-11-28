@@ -6,7 +6,7 @@
 #    By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 14:02:05 by edetoh            #+#    #+#              #
-#    Updated: 2024/11/28 14:32:00 by edetoh           ###   ########.fr        #
+#    Updated: 2024/11/28 14:43:36 by edetoh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ $(NAME):	$(OBJ)
 clean:
 			$(RM) -rf $(SRC_DIR)*.o
 			make clean -C $(LIBFT)
+			$(RM) -f libft.a
 			@echo "$(BLUE)>>> ft_printf object files cleaned! <<<$(DEF_COLOR)"
 
 # Nettoyage complet, incluant la suppression des librairies
