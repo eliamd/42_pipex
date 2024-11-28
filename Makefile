@@ -6,7 +6,7 @@
 #    By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 14:02:05 by edetoh            #+#    #+#              #
-#    Updated: 2024/11/26 16:55:00 by edetoh           ###   ########.fr        #
+#    Updated: 2024/11/28 12:35:07 by edetoh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_DIR		= src/
 
 # Commandes de compilation et d'archivage
 CC			= cc
-CFLAGS		= -Wall -Werror -Wextra -I
+CFLAGS		= -Wall -Werror -Wextra
 RM			= rm -f
 AR			= ar rcs
 
@@ -62,14 +62,13 @@ $(NAME):	$(OBJ)
 			@echo "$(YELLOW)>>> Compilation de libft <<<$(DEF_COLOR)"
 			make -C $(LIBFT)
 			cp $(LIBFT)/libft.a .
-			mv libft.a $(NAME)
-			$(AR) $(NAME) $(OBJ)
+			$(CC) $(CFLAGS) $(SRC) -o $(NAME) libft.a
 			@echo "$(GREEN)>>> libftprintf.a créé avec succès <<<$(DEF_COLOR)"
 
-# Compilation des objets pour ft_printf
-$(SRC_DIR)%.o: $(SRC_DIR)%.c
-			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+# # Compilation des objets pour ft_printf
+# $(SRC_DIR)%.o: $(SRC_DIR)%.c
+# 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
+# 			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 
 # ================================== CLEAN ==================================== #
@@ -83,6 +82,7 @@ clean:
 # Nettoyage complet, incluant la suppression des librairies
 fclean:		clean
 			$(RM) -f $(NAME)
+			$(RM) -f libft.a
 			$(RM) -f $(LIBFT)/libft.a
 			@echo "$(CYAN)>>> ft_printf et libft executables cleaned! <<<$(DEF_COLOR)"
 
