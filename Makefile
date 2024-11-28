@@ -6,7 +6,7 @@
 #    By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 14:02:05 by edetoh            #+#    #+#              #
-#    Updated: 2024/11/28 12:35:07 by edetoh           ###   ########.fr        #
+#    Updated: 2024/11/28 14:32:00 by edetoh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ WHITE = \033[0;97m
 # Liste des fichiers source pour ft_printf
 SRC_FILES	= pipex \
 			  pipex_utils \
+			  pipex_utils_args \
 
 # Définition des fichiers source et objets
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:54:18 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/28 12:24:06 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/28 12:54:57 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	int				fd_out_file;
 
 	if (check_args(argc, argv) == 0)
-		return (perror("Erreur : check_args."), exit(EXIT_FAILURE), 1);
+		return (perror("Erreur : args non valides."), exit(EXIT_FAILURE), 1);
 	if (ft_setup_files(argv, &fd_in_file, &fd_out_file) == 0)
 		return (perror("Erreur : ft_setup_files."), exit(EXIT_FAILURE), 1);
 	if (pipe(fd) == -1)
