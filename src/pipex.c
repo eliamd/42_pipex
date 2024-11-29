@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:54:18 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/28 12:54:57 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/29 16:43:31 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_chlid_process(t_args_execute args, int index, int mode)
 	arg_tab = ft_split(args.argv[index], ' ');
 	if (!arg_tab)
 		exit(EXIT_FAILURE);
-	cmd_path = ft_get_cmd_path(arg_tab[0]);
+	cmd_path = ft_command_found_and_access(&arg_tab[0]);
 	if (!cmd_path)
 	{
 		ft_freetab(arg_tab);
@@ -28,7 +28,7 @@ static void	ft_chlid_process(t_args_execute args, int index, int mode)
 	}
 	ft_redirect_fd(args, mode);
 	execv(cmd_path, arg_tab);
-	perror("Erreur : execv");
+	perror("Erreur : execv ");
 	return (ft_freetab(arg_tab), free(arg_tab), free(cmd_path), \
 	exit(EXIT_FAILURE));
 }

@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:30:53 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/28 16:00:15 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/29 16:43:36 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_getenv(const char *name)
 	return (NULL);
 }
 
-int	ft_command_found_and_access(char **arg_tab)
+char	*ft_command_found_and_access(char **arg_tab)
 {
 	char	*cmd_dir;
 	char	**pathcmd;
@@ -56,19 +56,20 @@ int	ft_command_found_and_access(char **arg_tab)
 	{
 		cmd_dir = concat_path(pathcmd[i], arg_tab[0]);
 		if (!cmd_dir)
-			return (ft_freetab(pathcmd), 0);
+			return (ft_freetab(pathcmd), NULL);
 		if (access(cmd_dir, F_OK) != -1)
-			return (free(cmd_dir), ft_freetab(pathcmd), free(pathcmd), 1);
+			return (ft_freetab(pathcmd), free(pathcmd), cmd_dir);
 		free(cmd_dir);
 		i++;
 	}
-	return (ft_freetab(pathcmd), 0);
+	return (ft_freetab(pathcmd), NULL);
 }
 
 int	check_args(int argc, char **argv)
 {
 	int		index;
 	char	**arg_tab;
+	char	*cmd_dir;
 
 	index = 2;
 	if (argc != 5 || !argv[1] || access(argv[1], F_OK) == -1)
@@ -78,12 +79,14 @@ int	check_args(int argc, char **argv)
 		arg_tab = ft_split(argv[index], ' ');
 		if (!arg_tab)
 			return (0);
-		if (!ft_command_found_and_access(arg_tab))
+		cmd_dir = ft_command_found_and_access(arg_tab);
+		if (!cmd_dir)
 			return (ft_freetab(arg_tab), free(arg_tab), 0);
 		else
 			index++;
 		ft_freetab(arg_tab);
 		free(arg_tab);
+		free(cmd_dir);
 	}
 	return (1);
 }

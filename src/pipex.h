@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:48:38 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/28 14:31:37 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/29 16:41:01 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "../42_libft-mylibft/libft.h"
 
 void			ft_freetab(char **tab);
+char			*ft_command_found_and_access(char **arg_tab);
 int				check_args(int argc, char **argv);
 char			*ft_get_cmd_path(char *str);
 

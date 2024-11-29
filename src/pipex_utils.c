@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:20:05 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/28 14:34:21 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/11/29 16:45:06 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ void	ft_freetab(char **tab)
 		free(*tab);
 		++tab;
 	}
-}
-
-char	*ft_get_cmd_path(char *str)
-{
-	char	*path;
-
-	path = ft_strjoin("/usr/bin/", str);
-	if (!path)
-		return (NULL);
-	return (path);
 }
 
 t_args_execute	ft_create_args(char **argv, int *fd, int fd_in, int fd_out)
