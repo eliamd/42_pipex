@@ -6,7 +6,7 @@
 #    By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 14:02:05 by edetoh            #+#    #+#              #
-#    Updated: 2024/11/28 14:43:36 by edetoh           ###   ########.fr        #
+#    Updated: 2025/01/27 15:13:29 by edetoh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ $(NAME):	$(OBJ)
 # ================================== CLEAN ==================================== #
 
 # Nettoyage des objets de ft_printf et de libft
-clean:
+clean: clean_tests
 			$(RM) -rf $(SRC_DIR)*.o
 			make clean -C $(LIBFT)
 			$(RM) -f libft.a
@@ -98,3 +98,20 @@ re:			fclean all
 
 # Indication des règles qui ne correspondent pas à des fichiers
 .PHONY:		all clean fclean re
+
+# Ajout des règles pour les tests
+TEST_DIR	= tests/
+TEST_FILES	= test_pipex
+TEST_SRC	= $(addprefix $(TEST_DIR), $(addsuffix .c, $(TEST_FILES)))
+TEST_OBJ	= $(addprefix $(TEST_DIR), $(addsuffix .o, $(TEST_FILES)))
+TEST_NAME	= unit_tests
+
+test: $(NAME) $(TEST_OBJ)
+	$(CC) $(CFLAGS) $(TEST_OBJ) -o $(TEST_NAME) libft.a -lcriterion
+	./$(TEST_NAME)
+
+clean_tests:
+	$(RM) $(TEST_OBJ)
+	$(RM) $(TEST_NAME)
+
+.PHONY: test clean_tests

@@ -1,0 +1,38 @@
+name: CI/CD for Pipex
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y criterion-dev
+
+    - name: Install Norminette
+      run: |
+        python3 -m pip install --upgrade pip setuptools
+        python3 -m pip install norminette
+
+    - name: Check Norm
+      run: norminette src/ include/
+
+    - name: Build project
+      run: make
+
+    - name: Run tests
+      run: make test
+
+    - name: Clean up
+      run: make fclean
